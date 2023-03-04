@@ -1,0 +1,32 @@
+.section-navigation {
+  min-width: 10rem;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: #975ec9;
+}
+.navigation-area {
+  width: 100%;
+}
+
+.nav-buttons {
+  width: 100%;
+  flex-direction: column;
+}
+.nav-button {
+  width: 100%;
+  color: white;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+
+.active {
+  background-color: rgb(189, 143, 230);
+  border-left: 0.25rem solid white;
+}
+.not-active {
+  border-left: 0.25rem solid transparent;
+}
