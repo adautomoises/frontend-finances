@@ -1,0 +1,238 @@
+:root {
+  --BLUE: #6d98ef;
+  --GREEN: #88ec8b;
+  --ORANGE: #f5cb59;
+  --PINK: #ee82d1;
+  --PURPLE: #8e80ef;
+  --RED: #f36464;
+  --WHITE: rgb(230, 230, 230);
+  --YELLOW: #f0fb64;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: auto;
+}
+
+.section-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: rgb(230, 230, 230);
+}
+
+.section-content-header {
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  background-color: white;
+  padding-right: 2rem;
+}
+
+.menu {
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  right: 0;
+  border: 1px solid black;
+}
+
+.section-content-main {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.cards {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 3rem;
+  padding: 1rem;
+}
+
+.card {
+  min-width: 24rem;
+  height: 12rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 1.25rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-datetime {
+  color: rgb(151, 94, 201);
+  font-size: 34px;
+  font-family: NotoSans, "Noto Sans";
+  font-weight: bold;
+}
+
+.card-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-value {
+  color: rgb(35, 23, 23);
+  font-size: 34px;
+  font-family: NotoSans-Bold, "Noto Sans";
+  font-weight: 700;
+}
+
+.card-name {
+  color: rgb(112, 112, 112);
+  font-size: 27px;
+  font-family: NotoSans-Bold, "Noto Sans";
+  font-weight: 700;
+}
+
+.graphics {
+  padding: 1rem;
+}
+
+.grafico-barras {
+  width: 100%;
+  height: 25rem;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2.5rem 2.5rem 0.5rem;
+}
+
+.colunas {
+  display: flex;
+  height: 100%;
+}
+
+.escala-y {
+  width: 6rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 2.5rem);
+  padding-right: 1rem;
+  position: relative;
+}
+
+.linha {
+  position: absolute;
+  width: 100%;
+}
+
+.area-grafico {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.area-barras {
+  flex-grow: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 5rem);
+  justify-content: space-around;
+  border-bottom: 1px solid lightgray;
+  position: relative;
+  z-index: 1;
+}
+
+.area-barras span {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+}
+
+.divisao {
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.barra {
+  width: 5rem;
+  border-radius: 4px 4px 0 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.valor-barra {
+  position: relative;
+  top: -2rem;
+}
+
+.nome-barra {
+  position: relative;
+  height: 0;
+  text-align: center;
+}
+
+.escala-x {
+  height: 2.5rem;
+  position: relative;
+}
+
+.BLUE {
+  background-color: #6d98ef;
+}
+.GREEN {
+  background-color: #88ec8b;
+}
+.ORANGE {
+  background-color: #f5cb59;
+}
+.PINK {
+  background-color: #ee82d1;
+}
+.PURPLE {
+  background-color: #8e80ef;
+}
+.RED {
+  background-color: #f36464;
+}
+.WHITE {
+  background-color: rgb(230, 230, 230);
+}
+.YELLOW {
+  background-color: #f0fb64;
+}
