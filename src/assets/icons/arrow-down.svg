@@ -1,42 +1,31 @@
 <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  id="Icone_Seta_P_Baixo"
-                  data-name="Icone Seta P/Baixo"
-                  width="48"
-                  height="48"
-                  viewBox="-2 -2 52 52"
-                >
-                  <path
-                    id="Caminho_31"
-                    data-name="Caminho 31"
-                    d="M583.317,71.3a23.984,23.984,0,1,0-23.984-23.984A23.984,23.984,0,0,0,583.317,71.3Z"
-                    transform="translate(-559.333 -23.333)"
-                    fill="none"
-                    stroke="#e83f5b"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  />
-                  <path
-                    id="Caminho_32"
-                    data-name="Caminho 32"
-                    d="M569.333,40l9.594,9.594L588.521,40"
-                    transform="translate(-554.943 -16.016)"
-                    fill="none"
-                    stroke="#e83f5b"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  />
-                  <path
-                    id="Caminho_33"
-                    data-name="Caminho 33"
-                    d="M576,33.333V52.521"
-                    transform="translate(-552.016 -18.943)"
-                    fill="none"
-                    stroke="#e83f5b"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                  />
-                </svg>
+  xmlns="http://www.w3.org/2000/svg"
+  id="Icone_Seta_P_Baixo"
+  data-name="Icone Seta P/Baixo"
+  width="44"
+  height="44"
+  viewBox="0 0 46 46"
+>
+  <path
+    id="Caminho_32"
+    data-name="Caminho 32"
+    d="M569.333,40l9.594,9.594L588.521,40"
+    transform="translate(-554.943 -16.016)"
+    fill="none"
+    stroke="#e83f5b"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+  <path
+    id="Caminho_33"
+    data-name="Caminho 33"
+    d="M576,33.333V52.521"
+    transform="translate(-552.016 -18.943)"
+    fill="none"
+    stroke="#e83f5b"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+  />
+</svg>

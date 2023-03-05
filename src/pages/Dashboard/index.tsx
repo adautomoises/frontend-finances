@@ -46,15 +46,6 @@ export function Dashboard() {
     getDashboardData();
   }, []);
 
-  const bottomRange = (row: string) => {
-    if (row === "0,00") {
-      return 0;
-    }
-    return Math.ceil(
-      (parseFloat(row) / parseFloat(dashboardData?.graphicLine[0])) * 100
-    );
-  };
-
   const [expandMenu, setExpandMenu] = useState<boolean>(false);
 
   const handleChangeExpandMenu = () => {
@@ -70,7 +61,14 @@ export function Dashboard() {
     <div className="App">
       <section className="section-content">
         <header className="section-content-header">
-          <button onClick={handleChangeExpandMenu}>
+          <button
+            style={{
+              appearance: "none",
+              border: "none",
+              background: "none",
+            }}
+            onClick={handleChangeExpandMenu}
+          >
             <ProfileSVG />
           </button>
           <dialog
@@ -90,7 +88,9 @@ export function Dashboard() {
             <div className="card">
               <div className="card-header">
                 <WalletSVG />
-                <DollarSVG />
+                <div className="dollar-circle">
+                  <DollarSVG />
+                </div>
               </div>
               <div className="card-content">
                 <span className="card-value">
@@ -102,39 +102,44 @@ export function Dashboard() {
             <div className="card">
               <div className="card-header">
                 <FlyingMoneySVG />
-                <ArrowDownSVG />
+                <div className="arrow-circle">
+                  <ArrowDownSVG />
+                </div>
               </div>
               <div className="card-content">
                 <span className="card-value">
-                  - R$ {dashboardData?.wallet?.monthlyExpense}
+                  R$ {dashboardData?.wallet?.monthlyExpense}
                 </span>
                 <span className="card-name">Gasto mensal</span>
               </div>
             </div>
-            {dashboardData?.nextBilling !== null && (
+            {dashboardData?.nextBilling?.length > 0 && (
               <div className="card">
                 <div className="card-header">
                   <CalendarSVG />
                   <time className="card-datetime">
-                    {dashboardData.nextBilling &&
+                    {dashboardData?.nextBilling &&
                       formatDate(dashboardData?.nextBilling[0].date)}
                   </time>
-                  <AlertSVG />
+
+                  {dashboardData?.nextBilling?.length > 1 && (
+                    <div className="alert-billings center">
+                      +{dashboardData?.nextBilling?.length - 1}
+                    </div>
+                  )}
+                  {/* <AlertSVG /> */}
                 </div>
                 <div className="card-content">
                   <span className="card-value">
                     R${" "}
-                    {dashboardData.nextBilling &&
+                    {dashboardData?.nextBilling &&
                       dashboardData?.nextBilling[0].value}
                   </span>
                   <span className="card-name">
-                    {dashboardData.nextBilling &&
+                    {dashboardData?.nextBilling &&
                       dashboardData?.nextBilling[0].title}
                   </span>
                 </div>
-                {dashboardData?.nextBilling?.length > 1 && (
-                  <div>+{dashboardData?.nextBilling?.length - 1}</div>
-                )}
               </div>
             )}
           </section>
@@ -142,19 +147,21 @@ export function Dashboard() {
             <div className="grafico-barras">
               <div className="colunas">
                 <div className="escala-y">
-                  {dashboardData?.graphicLine?.map(
-                    (row, index) =>
-                      row !== "0,00" && (
-                        <div
-                          key={row + index}
-                          className="linha"
-                          style={{
-                            bottom: `${bottomRange(row)}%`,
-                          }}
-                        >
-                          R$ {row}
-                        </div>
-                      )
+                  {dashboardData?.graphicLine && (
+                    <>
+                      <div key={1} className="linha" style={{ bottom: "100%" }}>
+                        R$ {dashboardData?.graphicLine[0]}
+                      </div>
+                      <div key={2} className="linha" style={{ bottom: "75%" }}>
+                        R$ {dashboardData?.graphicLine[1]}
+                      </div>
+                      <div key={3} className="linha" style={{ bottom: "50%" }}>
+                        R$ {dashboardData?.graphicLine[2]}
+                      </div>
+                      <div key={4} className="linha" style={{ bottom: "25%" }}>
+                        R$ {dashboardData?.graphicLine[3]}
+                      </div>
+                    </>
                   )}
                 </div>
                 <div className="area-grafico">

@@ -12,7 +12,7 @@ export interface DashboardProps {
     firstName: string;
     id: string;
     lastName: string;
-    sex: "MAN" | "WOMEN";
+    sex: "MAN" | "WOMAN";
     userName: string;
   };
   wallet: {
@@ -23,14 +23,14 @@ export interface DashboardProps {
   graphicLine: string[];
   typeSpent: {
     color:
-      | "BLUE"
-      | "GREEN"
-      | "ORANGE"
       | "PINK"
       | "PURPLE"
+      | "YELLOW"
+      | "GREEN"
+      | "ORANGE"
       | "RED"
-      | "WHITE"
-      | "YELLOW";
+      | "BLUE"
+      | "GRAY";
     id: string;
     name: string;
     spentList: {

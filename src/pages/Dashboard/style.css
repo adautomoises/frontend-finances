@@ -1,12 +1,17 @@
 :root {
   --BLUE: #6d98ef;
   --GREEN: #88ec8b;
-  --ORANGE: #f5cb59;
+  --ORANGE: #ffb404;
   --PINK: #ee82d1;
   --PURPLE: #8e80ef;
   --RED: #f36464;
-  --WHITE: rgb(230, 230, 230);
+  --WHITE: #e6e6e6;
   --YELLOW: #f0fb64;
+  --LIGHT_GRAY: #d3d3d3;
+  --WHITE: #ffffff;
+  --BLACK: #000000;
+  --DARK_BLACK: #231717;
+  --DARK_GRAY: #707070;
 }
 
 * {
@@ -36,7 +41,7 @@
   align-items: center;
   flex-direction: column;
 
-  background-color: rgb(230, 230, 230);
+  background-color: #e6e6e6;
 }
 
 .section-content-header {
@@ -46,16 +51,16 @@
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--WHITE);
   padding-right: 2rem;
 }
 
 .menu {
   flex-direction: column;
-  background-color: white;
+  background-color: var(--WHITE);
   position: absolute;
   right: 0;
-  border: 1px solid black;
+  border: 1px solid var(--BLACK);
 }
 
 .section-content-main {
@@ -82,9 +87,9 @@
   align-items: flex-start;
   flex-direction: column;
   padding: 1.25rem;
-  background-color: white;
+  background-color: var(--WHITE);
   border-radius: 10px;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 3px 5px 0px var(--BLACK) 80;
 }
 
 .card-header {
@@ -95,10 +100,33 @@
 }
 
 .card-datetime {
-  color: rgb(151, 94, 201);
+  color: var(--PURPLE);
   font-size: 34px;
   font-family: NotoSans, "Noto Sans";
   font-weight: bold;
+}
+
+.alert-billings {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--ORANGE);
+  border-radius: 1.5rem;
+  color: var(--ORANGE);
+  font-size: large;
+}
+
+.dollar-circle {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid #12a454;
+  border-radius: 1.5rem;
+}
+
+.arrow-circle {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid #e83f5b;
+  border-radius: 1.5rem;
 }
 
 .card-content {
@@ -111,14 +139,14 @@
 }
 
 .card-value {
-  color: rgb(35, 23, 23);
+  color: var(--DARK_BLACK);
   font-size: 34px;
   font-family: NotoSans-Bold, "Noto Sans";
   font-weight: 700;
 }
 
 .card-name {
-  color: rgb(112, 112, 112);
+  color: var(--DARK_GRAY);
   font-size: 27px;
   font-family: NotoSans-Bold, "Noto Sans";
   font-weight: 700;
@@ -131,8 +159,8 @@
 .grafico-barras {
   width: 100%;
   height: 25rem;
-  background-color: white;
-  border: 1px solid black;
+  background-color: var(--WHITE);
+  border: 1px solid var(--BLACK);
   border-radius: 10px;
   padding: 2.5rem 2.5rem 0.5rem;
 }
@@ -168,7 +196,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 5rem);
   justify-content: space-around;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--LIGHT_GRAY);
   position: relative;
   z-index: 1;
 }
@@ -177,7 +205,7 @@
   z-index: 0;
   position: absolute;
   width: 100%;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--LIGHT_GRAY);
 }
 
 .divisao {
@@ -213,26 +241,26 @@
 }
 
 .BLUE {
-  background-color: #6d98ef;
+  background-color: var(--BLUE);
 }
 .GREEN {
-  background-color: #88ec8b;
+  background-color: var(--GREEN);
 }
 .ORANGE {
-  background-color: #f5cb59;
+  background-color: var(--ORANGE);
 }
 .PINK {
-  background-color: #ee82d1;
+  background-color: var(--PINK);
 }
 .PURPLE {
-  background-color: #8e80ef;
+  background-color: var(--PURPLE);
 }
 .RED {
-  background-color: #f36464;
+  background-color: var(--RED);
 }
-.WHITE {
-  background-color: rgb(230, 230, 230);
+.GRAY {
+  background-color: var(--LIGHT_GRAY);
 }
 .YELLOW {
-  background-color: #f0fb64;
+  background-color: var(--YELLOW);
 }
