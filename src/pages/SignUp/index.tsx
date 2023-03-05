@@ -107,21 +107,17 @@ export function SignUp() {
           <input
             type={"radio"}
             value="MAN"
+            id="sex"
             name="sex"
-            onChange={(event) => {
-              handleInputChange(event);
-              console.log(event.target.value);
-            }}
+            onChange={handleInputChange}
           />
           Masculino
           <input
             type={"radio"}
             value="WOMAN"
+            id="sex"
             name="sex"
-            onChange={(event) => {
-              handleInputChange(event);
-              console.log(event.target.value);
-            }}
+            onChange={handleInputChange}
           />
           Feminino
         </div>
