@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 
 interface IErrorResponse {
@@ -82,6 +82,7 @@ export function SignIn() {
         />
         <label htmlFor="password">Senha</label>
         <input type={"password"} id="password" onChange={handleInputChange} />
+        <Link to="/recuperar-senha">Esqueci a senha</Link>
         <button type="submit">Entrar</button>
         <>
           Não possui uma conta?

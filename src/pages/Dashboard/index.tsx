@@ -5,7 +5,7 @@ import { ReactComponent as DollarSVG } from "../../assets/icons/dollar.svg";
 import { ReactComponent as FlyingMoneySVG } from "../../assets/icons/flying-money.svg";
 import { ReactComponent as ArrowDownSVG } from "../../assets/icons/arrow-down.svg";
 import { ReactComponent as CalendarSVG } from "../../assets/icons/calendar.svg";
-import { ReactComponent as AlertSVG } from "../../assets/icons/alert.svg";
+// import { ReactComponent as AlertSVG } from "../../assets/icons/alert.svg";
 
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
@@ -13,9 +13,7 @@ import { DashboardProps } from "../../interfaces/dashboardInterface";
 import { api } from "../../services/api";
 import { formatDate } from "../../utils/formatDate";
 import { useNavigate } from "react-router-dom";
-interface IErrorResponse {
-  message: string;
-}
+import { IErrorResponse } from "../../interfaces/axiosInterface";
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -25,26 +23,25 @@ export function Dashboard() {
     {} as DashboardProps
   );
 
-  const getDashboardData = () => {
-    api
-      .get("/user/dashboard", {
-        params: {
-          userID: userID,
-        },
-      })
-      .then((response) => {
-        setDashboardData(response.data);
-      })
-      .catch((error: AxiosError<IErrorResponse>) => {
-        if (error.response) {
-          console.log(error.response.data.message);
-        }
-      });
-  };
-
   useEffect(() => {
+    const getDashboardData = () => {
+      api
+        .get("/user/dashboard", {
+          params: {
+            userID: userID,
+          },
+        })
+        .then((response) => {
+          setDashboardData(response.data);
+        })
+        .catch((error: AxiosError<IErrorResponse>) => {
+          if (error.response) {
+            console.log(error.response.data.message);
+          }
+        });
+    };
     getDashboardData();
-  }, []);
+  }, [userID]);
 
   const [expandMenu, setExpandMenu] = useState<boolean>(false);
 

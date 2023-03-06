@@ -1,11 +1,8 @@
 import { AxiosError } from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IErrorResponse } from "../../interfaces/axiosInterface";
 import { api } from "../../services/api";
-
-interface IErrorResponse {
-  message: string;
-}
 
 export function SignUp() {
   const navigate = useNavigate();
@@ -41,7 +38,7 @@ export function SignUp() {
         })
         .catch((error: AxiosError<IErrorResponse>) => {
           if (error.response) {
-            console.log(error.response.data.message);
+            alert(error.response.data.message);
           }
         });
     } else {

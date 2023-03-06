@@ -1,0 +1,27 @@
+:root {
+  --BLUE: #6d98ef;
+  --GREEN: #88ec8b;
+  --ORANGE: #ffb404;
+  --PINK: #ee82d1;
+  --PURPLE: #8e80ef;
+  --RED: #f36464;
+  --DARK_WHITE: #e6e6e6;
+  --YELLOW: #f0fb64;
+  --LIGHT_GRAY: #d3d3d3;
+  --WHITE: #ffffff;
+  --BLACK: #000000;
+  --DARK_BLACK: #231717;
+  --DARK_GRAY: #707070;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
