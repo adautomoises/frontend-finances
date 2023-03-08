@@ -1,4 +1,4 @@
-import React from "react";
+import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -8,20 +8,19 @@ export function Home() {
   };
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        gap: 10,
-      }}
-    >
-      <h1>Bem-Vindo</h1>
-      <button onClick={() => navigation("/entrar")}>Entrar</button>
-      <button onClick={() => navigation("/cadastrar")}>Cadastrar</button>
-    </div>
+    <section className="home center">
+      <div className="container center">
+        <h1>Bem-Vindo</h1>
+        <button className="button green" onClick={() => navigation("/entrar")}>
+          Entrar
+        </button>
+        <button
+          className="button pink"
+          onClick={() => navigation("/cadastrar")}
+        >
+          Cadastrar
+        </button>
+      </div>
+    </section>
   );
 }
