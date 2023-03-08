@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IErrorResponse } from "../../interfaces/axiosInterface";
 import { api } from "../../services/api";
@@ -53,6 +53,12 @@ export function SignUp() {
       [id]: value,
     }));
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("@finances:userID-1.0.0")) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div>
