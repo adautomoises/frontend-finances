@@ -14,6 +14,8 @@ export function ForgetPassword() {
   const [codeValid, setCodeValid] = useState<boolean>(false);
 
   const forgetPassword = () => {
+    setSendCode(true);
+
     api
       .get("/user/forgetPassword", {
         params: {
@@ -28,6 +30,7 @@ export function ForgetPassword() {
         if (error.response) {
           alert(error.response.data.message);
         }
+        setSendCode(false);
       });
   };
   const validForgetPassword = () => {
