@@ -5,7 +5,6 @@ import { ReactComponent as DollarSVG } from "../../assets/icons/dollar.svg";
 import { ReactComponent as FlyingMoneySVG } from "../../assets/icons/flying-money.svg";
 import { ReactComponent as ArrowDownSVG } from "../../assets/icons/arrow-down.svg";
 import { ReactComponent as CalendarSVG } from "../../assets/icons/calendar.svg";
-// import { ReactComponent as AlertSVG } from "../../assets/icons/alert.svg";
 
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
@@ -26,9 +25,9 @@ export function Dashboard() {
   useEffect(() => {
     const getDashboardData = () => {
       api
-        .get("/user/dashboard", {
+        .get("/dashboard", {
           params: {
-            userID: userID,
+            userId: userID,
           },
         })
         .then((response) => {

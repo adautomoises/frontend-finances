@@ -1,0 +1,83 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.back-button {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 6.5px;
+  left: 0.25rem;
+  color: var(--BLACK);
+  border: 1px solid var(--BLACK);
+  border-radius: 12px;
+  background-color: var(--WHITE);
+}
+
+.back-button:hover {
+  background-color: var(--DARK_WHITE);
+}
+
+.form-title {
+  color: var(--WHITE);
+}
+
+.form-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input-email {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-input-password {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.save-forget {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+}
+
+.save-password {
+  color: var(--WHITE);
+}
+
+.form-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-button {
+  background-color: var(--GREEN);
+}
+.login-button:hover {
+  background-color: var(--DARK_GREEN);
+}
+
+.register-button {
+  background-color: var(--WHITE);
+}
+.register-button:hover {
+  background-color: var(--DARK_WHITE);
+}
+
+.alternative-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

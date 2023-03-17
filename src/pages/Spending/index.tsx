@@ -2,6 +2,7 @@ import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { IErrorResponse } from "../../interfaces/axiosInterface";
 import { DashboardProps } from "../../interfaces/dashboardInterface";
+
 import {
   BillingProps,
   SpentProps,
@@ -139,9 +140,9 @@ export function Spending() {
   useEffect(() => {
     const getDashboardData = () => {
       api
-        .get("/user/dashboard", {
+        .get("/dashboard", {
           params: {
-            userID: userID,
+            userId: userID,
           },
         })
         .then((response) => {

@@ -1,7 +1,22 @@
+import "./styles.css";
+import {
+  Form,
+  Input,
+  GoogleOrFacebook,
+  LoginOrRegister,
+  SaveOrForget,
+  BackButton,
+} from "./styles";
 import { AxiosError } from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import GoogleIcon from "@mui/icons-material/Google";
+import FacebookIcon from "@mui/icons-material/Facebook";
 
 interface IErrorResponse {
   message: string;
@@ -9,6 +24,7 @@ interface IErrorResponse {
 
 export function SignIn() {
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
   const [user, setUser] = useState({
     emailOrUsername: "",
     password: "",
@@ -30,7 +46,7 @@ export function SignIn() {
         })
         .catch((error: AxiosError<IErrorResponse>) => {
           if (error.response) {
-            console.log(error.response.data.message);
+            alert(error.response.data.message);
           }
         });
     } else {
@@ -53,49 +69,91 @@ export function SignIn() {
   }, []);
 
   return (
-    <div>
-      <form
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 10,
-        }}
-        onSubmit={handleSubmit}
-      >
-        <button
-          type="button"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Voltar
-        </button>
-        <label htmlFor="emailOrUsername">Usuário</label>
-        <input
-          type={"text"}
-          id="emailOrUsername"
-          onChange={handleInputChange}
-        />
-        <label htmlFor="password">Senha</label>
-        <input type={"password"} id="password" onChange={handleInputChange} />
-        <Link to="/recuperar-senha">Esqueci a senha</Link>
-        <button type="submit">Entrar</button>
-        <>
-          Não possui uma conta?
-          <button
+    <div className="center">
+      <Form onSubmit={handleSubmit}>
+        <div className="header">
+          <BackButton
+            className="center"
             type="button"
             onClick={() => {
-              navigate("/cadastrar");
+              navigate("/");
             }}
           >
-            Cadastrar
+            <ArrowBackIcon fontSize="large" />
+          </BackButton>
+          <h1 className="form-title">Login</h1>
+        </div>
+        <section className="form-inputs">
+          <Input>
+            <input
+              id="emailOrUsername"
+              type="text"
+              placeholder="Email"
+              onChange={handleInputChange}
+            />
+            <EmailIcon />
+          </Input>
+          <Input>
+            <input
+              id="password"
+              type="password"
+              placeholder="Senha"
+              onChange={handleInputChange}
+            />
+            <LockIcon />
+          </Input>
+        </section>
+        <SaveOrForget className="save-forget">
+          <div className="save-password">
+            <input
+              id="save-password"
+              type="checkbox"
+              name="save-password"
+              onChange={() => {
+                setIsChecked(!isChecked);
+              }}
+            />
+            <p>
+              <span>Salvar senha</span>
+            </p>
+          </div>
+          <a href="/recuperar-senha">Esqueci a senha</a>
+        </SaveOrForget>
+        <LoginOrRegister className="form-buttons">
+          <button className="login-button" type="submit">
+            <p>
+              <span>ENTRAR</span>
+            </p>
           </button>
-        </>
-      </form>
+        </LoginOrRegister>
+        <GoogleOrFacebook className="alternative-login">
+          <p>
+            <span>OU</span>
+          </p>
+          <button
+            disabled
+            style={{ cursor: "default" }}
+            className="login-google"
+            type="button"
+          >
+            <GoogleIcon color="success" />
+            <p>
+              <span>Continuar com Google</span>
+            </p>
+          </button>
+          <button
+            disabled
+            style={{ cursor: "default" }}
+            className="login-facebook"
+            type="button"
+          >
+            <FacebookIcon color="info" />
+            <p>
+              <span>Continuar com Facebook</span>
+            </p>
+          </button>
+        </GoogleOrFacebook>
+      </Form>
     </div>
   );
 }

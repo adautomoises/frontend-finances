@@ -1,9 +1,9 @@
 import "./styles.css";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import { ReactComponent as DashboardSVG } from "../assets/icons/dashboard.svg";
-import { ReactComponent as HandSVG } from "../assets/icons/hand.svg";
-import { ReactComponent as FinancesSVG } from "../assets/icons/finances.svg";
+import { ReactComponent as DashboardSVG } from "../../assets/icons/dashboard.svg";
+import { ReactComponent as HandSVG } from "../../assets/icons/hand.svg";
+import { ReactComponent as FinancesSVG } from "../../assets/icons/finances.svg";
 
 export function DashboardLayout() {
   const navigate = useNavigate();

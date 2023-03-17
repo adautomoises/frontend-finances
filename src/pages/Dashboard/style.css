@@ -1,16 +1,19 @@
 :root {
   --BLUE: #6d98ef;
+  --DARK_BLUE: #5782d8;
   --GREEN: #88ec8b;
+  --DARK_GREEN: #7fe083;
   --ORANGE: #ffb404;
   --PINK: #ee82d1;
   --PURPLE: #8e80ef;
   --RED: #f36464;
-  --DARK_WHITE: #e6e6e6;
   --YELLOW: #f0fb64;
-  --LIGHT_GRAY: #d3d3d3;
   --WHITE: #ffffff;
+  --DARK_WHITE: #f0f0f0;
+  --LIGHT_BLACK: #222222;
   --BLACK: #000000;
-  --DARK_BLACK: #231717;
+  --DARK_BLACK: #181212;
+  --LIGHT_GRAY: #d3d3d3;
   --DARK_GRAY: #707070;
 }
 
@@ -18,6 +21,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+button {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .center {

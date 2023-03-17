@@ -1,26 +1,11 @@
-import "./styles.css";
-import { useNavigate } from "react-router-dom";
+import { Welcome } from "./styles";
 
 export function Home() {
-  const navigate = useNavigate();
-  const navigation = (param: string) => {
-    navigate(param);
-  };
-
   return (
-    <section className="home center">
-      <div className="container center">
-        <h1>Bem-Vindo</h1>
-        <button className="button green" onClick={() => navigation("/entrar")}>
-          Entrar
-        </button>
-        <button
-          className="button pink"
-          onClick={() => navigation("/cadastrar")}
-        >
-          Cadastrar
-        </button>
-      </div>
-    </section>
+    <Welcome>
+      <h2>Bem-Vindo</h2>
+      <h2>ao</h2>
+      <h1>Finance</h1>
+    </Welcome>
   );
 }

@@ -4,8 +4,32 @@ import { useNavigate } from "react-router-dom";
 import { IErrorResponse } from "../../interfaces/axiosInterface";
 import { api } from "../../services/api";
 
+import {
+  Form,
+  BackButton,
+  Container,
+  Header,
+  FormSteps,
+  StepOne,
+  StepTwo,
+  FormInputs,
+  PreviousStepButton,
+  NextStepButton,
+  Input,
+  FormButtons,
+  ConfirmButton,
+  Select,
+} from "./styles";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import ShieldIcon from "@mui/icons-material/Shield";
+
 export function SignUp() {
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -54,6 +78,13 @@ export function SignUp() {
     }));
   };
 
+  const nextStep = () => {
+    setStep(2);
+  };
+  const lastStep = () => {
+    setStep(1);
+  };
+
   useEffect(() => {
     if (localStorage.getItem("@finances:userID-1.0.0")) {
       navigate("/dashboard");
@@ -61,85 +92,148 @@ export function SignUp() {
   }, []);
 
   return (
-    <div>
-      <form
-        style={{
-          width: "100vw",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          gap: 10,
-        }}
-        onSubmit={handleSubmit}
-      >
-        <button
-          type="button"
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Voltar
-        </button>
-        <label htmlFor="userName">Usuário</label>
-        <input type={"text"} id="userName" onChange={handleInputChange} />
-        <label htmlFor="password">Senha</label>
-        <input type={"password"} id="password" onChange={handleInputChange} />
-        <label htmlFor="confirmPassword">Confirmar Senha</label>
-        <input
-          type={"password"}
-          id="confirmPassword"
-          onChange={handleInputChange}
-        />
-        <label htmlFor="email">E-mail</label>
-        <input type={"email"} id="email" onChange={handleInputChange} />
-        <label htmlFor="firstName">Nome</label>
-        <input type={"text"} id="firstName" onChange={handleInputChange} />
-        <label htmlFor="lastName">Sobrenome</label>
-        <input type={"text"} id="lastName" onChange={handleInputChange} />
-        <label htmlFor="sex">Sexo</label>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
-          <input
-            type={"radio"}
-            value="MAN"
-            id="sex"
-            name="sex"
-            onChange={handleInputChange}
-          />
-          Masculino
-          <input
-            type={"radio"}
-            value="WOMAN"
-            id="sex"
-            name="sex"
-            onChange={handleInputChange}
-          />
-          Feminino
-        </div>
-        <label htmlFor="birthDate">Data de Nascimento</label>
-        <input type={"date"} id="birthDate" onChange={handleInputChange} />
-        <button type="submit">Criar conta</button>
-        <>
-          {" "}
-          Já possui uma conta?
-          <button
+    <Container>
+      <Form>
+        <div>
+          <BackButton
+            className="center"
             type="button"
             onClick={() => {
               navigate("/entrar");
             }}
           >
-            Entrar
-          </button>
-        </>
-      </form>
-    </div>
+            <ArrowBackIcon fontSize="large" />
+          </BackButton>
+          <Header>
+            <FormSteps>
+              <div>
+                <StepOne></StepOne>
+                <StepTwo
+                  style={{
+                    backgroundColor:
+                      step === 2 ? "var(--ORANGE)" : "var(--WHITE)",
+                  }}
+                ></StepTwo>
+              </div>
+              <p>
+                <span>{step}/2</span>
+              </p>
+            </FormSteps>
+            <div>
+              <h1>Criar sua conta</h1>
+              <ShieldIcon />
+            </div>
+          </Header>
+        </div>
+        <FormInputs>
+          {step === 1 ? (
+            <>
+              <Input>
+                <input
+                  id="userName"
+                  type="text"
+                  placeholder="Usuário"
+                  onChange={handleInputChange}
+                />
+                <AccountBoxIcon />
+              </Input>
+              <Input>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="E-mail"
+                  onChange={handleInputChange}
+                />
+                <EmailIcon />
+              </Input>
+              <Input>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Senha"
+                  onChange={handleInputChange}
+                />
+                <LockIcon />
+              </Input>
+              <Input>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirmar senha"
+                  onChange={handleInputChange}
+                />
+                <LockIcon />
+              </Input>
+              <FormButtons>
+                <PreviousStepButton
+                  disabled
+                  style={{
+                    cursor: "default",
+                  }}
+                  type="button"
+                >
+                  VOLTAR
+                </PreviousStepButton>
+                <NextStepButton type="button" onClick={nextStep}>
+                  PRÓXIMO
+                </NextStepButton>
+              </FormButtons>
+            </>
+          ) : (
+            <>
+              <Input>
+                <input
+                  id="firstName"
+                  type="text"
+                  placeholder="Nome"
+                  onChange={handleInputChange}
+                />
+                <AccountBoxIcon />
+              </Input>
+              <Input>
+                <input
+                  id="lastName"
+                  type="email"
+                  placeholder="Sobrenome"
+                  onChange={handleInputChange}
+                />
+                <EmailIcon />
+              </Input>
+              <Select>
+                <p>
+                  <span>Gênero</span>
+                </p>
+                <select id="sex" defaultValue="" onChange={handleInputChange}>
+                  <option value="" disabled></option>
+                  <option value="MAN">Masculino</option>
+                  <option value="WOMAN">Feminino</option>
+                </select>
+              </Select>
+              <Input>
+                <input
+                  type="date"
+                  id="birthDate"
+                  onChange={handleInputChange}
+                />
+              </Input>
+              <FormButtons>
+                <PreviousStepButton
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  type="button"
+                  onClick={lastStep}
+                >
+                  VOLTAR
+                </PreviousStepButton>
+                <ConfirmButton type="button" onClick={handleSubmit}>
+                  CONFIRMAR
+                </ConfirmButton>
+              </FormButtons>
+            </>
+          )}
+        </FormInputs>
+      </Form>
+    </Container>
   );
 }

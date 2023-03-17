@@ -1,12 +1,18 @@
-import "./styles.css";
+import "./styles";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IErrorResponse } from "../../interfaces/axiosInterface";
 import { api } from "../../services/api";
+import { Container, Form, Input } from "./styles";
+
+import EmailIcon from "@mui/icons-material/Email";
+import LockIcon from "@mui/icons-material/Lock";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
 
 export function ForgetPassword() {
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
   const [code, setCode] = useState<number>();
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -14,24 +20,27 @@ export function ForgetPassword() {
   const [codeValid, setCodeValid] = useState<boolean>(false);
 
   const forgetPassword = () => {
-    setSendCode(true);
-
-    api
-      .get("/user/forgetPassword", {
-        params: {
-          email: email,
-        },
-      })
-      .then((response) => {
-        alert(response.data.message);
-        setSendCode(true);
-      })
-      .catch((error: AxiosError<IErrorResponse>) => {
-        if (error.response) {
-          alert(error.response.data.message);
-        }
-        setSendCode(false);
-      });
+    if (email !== "") {
+      setSendCode(true);
+      api
+        .get("/user/forgetPassword", {
+          params: {
+            email: email,
+          },
+        })
+        .then((response) => {
+          alert(response.data.message);
+          setStep(2);
+        })
+        .catch((error: AxiosError<IErrorResponse>) => {
+          if (error.response) {
+            alert(error.response.data.message);
+          }
+          setSendCode(false);
+        });
+    } else {
+      alert("Informe seu e-mail!");
+    }
   };
   const validForgetPassword = () => {
     api
@@ -44,31 +53,39 @@ export function ForgetPassword() {
       .then((response) => {
         if (response.data === true) {
           setCodeValid(true);
+          setStep(3);
         }
       })
       .catch((error: AxiosError<IErrorResponse>) => {
         if (error.response) {
           alert(error.response.data.message);
         }
+        setCodeValid(false);
+        setStep(2);
       });
   };
   const getForgetPassword = () => {
-    api
-      .get("/user/patchForgetPassword", {
-        params: {
-          email: email,
-          password: password,
-        },
-      })
-      .then((response) => {
-        alert(response.data.message);
-        navigate("/entrar");
-      })
-      .catch((error: AxiosError<IErrorResponse>) => {
-        if (error.response) {
-          alert(error.response.data.message);
-        }
-      });
+    if (codeValid) {
+      api
+        .get("/user/patchForgetPassword", {
+          params: {
+            email: email,
+            password: password,
+          },
+        })
+        .then((response) => {
+          alert(response.data.message);
+          navigate("/entrar");
+        })
+        .catch((error: AxiosError<IErrorResponse>) => {
+          if (error.response) {
+            alert(error.response.data.message);
+          }
+        });
+    } else {
+      alert("Código inválido!");
+      setStep(2);
+    }
   };
 
   const handleInputSetEmail = (event: { target: { value: any } }) => {
@@ -85,45 +102,68 @@ export function ForgetPassword() {
   };
 
   return (
-    <div>
-      {sendCode === true ? (
-        codeValid === true ? (
-          <form className="form">
-            <label htmlFor="email">Seu E-mail:</label>
-            <span>{email}</span>
+    <Container>
+      {step === 1 && (
+        <Form>
+          <h1>Recuperar senha</h1>
+          <span>Digite o seu E-mail</span>
+          <Input>
+            <input
+              id="email"
+              type="email"
+              placeholder="E-mail"
+              onChange={handleInputSetEmail}
+            />
+            <EmailIcon />
+          </Input>
+          <button
+            disabled={sendCode}
+            style={{ cursor: sendCode ? "default" : "pointer" }}
+            type="button"
+            onClick={forgetPassword}
+          >
+            ENVIAR CÓDIGO
+          </button>
+        </Form>
+      )}
+      {step === 2 && (
+        <Form>
+          <h1>Recuperar senha</h1>
+          <span>Seu E-mail: {email}</span>
+          <span>Digite o Código:</span>
+          <Input>
+            <input
+              type="number"
+              id="code"
+              placeholder="000000"
+              onChange={handleInputSetCode}
+            />
+            <VpnKeyIcon />
+          </Input>
 
-            <label htmlFor="password">Digite sua nova senha</label>
+          <button type="button" onClick={validForgetPassword}>
+            VALIDAR
+          </button>
+        </Form>
+      )}
+      {step === 3 && (
+        <Form>
+          <h1>Recuperar senha</h1>
+          <span>Seu E-mail: {email}</span>
+          <span>Digite sua nova senha</span>
+          <Input>
             <input
               id="password"
               type="password"
               onChange={handleInputSetPassword}
             />
-            <button type="button" onClick={getForgetPassword}>
-              Alterar senha
-            </button>
-          </form>
-        ) : (
-          <form className="form">
-            <label htmlFor="email">Seu E-mail:</label>
-            <span>{email}</span>
-
-            <label htmlFor="code">Digite o Código</label>
-            <input type="number" id="code" onChange={handleInputSetCode} />
-
-            <button type="button" onClick={validForgetPassword}>
-              Validar
-            </button>
-          </form>
-        )
-      ) : (
-        <form className="form">
-          <label htmlFor="email">Digite o seu E-mail</label>
-          <input type="email" id="email" onChange={handleInputSetEmail} />
-          <button type="button" onClick={forgetPassword}>
-            Enviar Código de Recuperação
+            <LockIcon />
+          </Input>
+          <button type="button" onClick={getForgetPassword}>
+            ALTERAR SENHA
           </button>
-        </form>
+        </Form>
       )}
-    </div>
+    </Container>
   );
 }
