@@ -1,3 +1,4 @@
+import "./animation.css";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,8 @@ import {
   FormButtons,
   ConfirmButton,
   Select,
+  StepOneContainer,
+  StepTwoContainer,
 } from "./styles";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -26,10 +29,11 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import ShieldIcon from "@mui/icons-material/Shield";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export function SignUp() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState<number>(1);
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -94,7 +98,7 @@ export function SignUp() {
   return (
     <Container>
       <Form>
-        <div>
+        <div style={{ display: "flex", width: "100%" }}>
           <BackButton
             className="center"
             type="button"
@@ -126,113 +130,118 @@ export function SignUp() {
           </Header>
         </div>
         <FormInputs>
-          {step === 1 ? (
-            <>
-              <Input>
-                <input
-                  id="userName"
-                  type="text"
-                  placeholder="Usuário"
-                  onChange={handleInputChange}
-                />
-                <AccountBoxIcon />
-              </Input>
-              <Input>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="E-mail"
-                  onChange={handleInputChange}
-                />
-                <EmailIcon />
-              </Input>
-              <Input>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Senha"
-                  onChange={handleInputChange}
-                />
-                <LockIcon />
-              </Input>
-              <Input>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="Confirmar senha"
-                  onChange={handleInputChange}
-                />
-                <LockIcon />
-              </Input>
-              <FormButtons>
-                <PreviousStepButton
-                  disabled
-                  style={{
-                    cursor: "default",
-                  }}
-                  type="button"
-                >
-                  VOLTAR
-                </PreviousStepButton>
-                <NextStepButton type="button" onClick={nextStep}>
-                  PRÓXIMO
-                </NextStepButton>
-              </FormButtons>
-            </>
-          ) : (
-            <>
-              <Input>
-                <input
-                  id="firstName"
-                  type="text"
-                  placeholder="Nome"
-                  onChange={handleInputChange}
-                />
-                <AccountBoxIcon />
-              </Input>
-              <Input>
-                <input
-                  id="lastName"
-                  type="email"
-                  placeholder="Sobrenome"
-                  onChange={handleInputChange}
-                />
-                <EmailIcon />
-              </Input>
-              <Select>
-                <p>
-                  <span>Gênero</span>
-                </p>
-                <select id="sex" defaultValue="" onChange={handleInputChange}>
-                  <option value="" disabled></option>
-                  <option value="MAN">Masculino</option>
-                  <option value="WOMAN">Feminino</option>
-                </select>
-              </Select>
-              <Input>
-                <input
-                  type="date"
-                  id="birthDate"
-                  onChange={handleInputChange}
-                />
-              </Input>
-              <FormButtons>
-                <PreviousStepButton
-                  style={{
-                    cursor: "pointer",
-                  }}
-                  type="button"
-                  onClick={lastStep}
-                >
-                  VOLTAR
-                </PreviousStepButton>
-                <ConfirmButton type="button" onClick={handleSubmit}>
-                  CONFIRMAR
-                </ConfirmButton>
-              </FormButtons>
-            </>
-          )}
+          <StepOneContainer
+            className={step === 1 ? "active-one" : "not_active-one"}
+          >
+            <Input>
+              <input
+                id="userName"
+                type="text"
+                placeholder="Usuário"
+                onChange={handleInputChange}
+              />
+              <AccountBoxIcon />
+            </Input>
+            <Input>
+              <input
+                id="email"
+                type="email"
+                placeholder="E-mail"
+                onChange={handleInputChange}
+              />
+              <EmailIcon />
+            </Input>
+            <Input>
+              <input
+                id="password"
+                type="password"
+                placeholder="Senha"
+                onChange={handleInputChange}
+              />
+              <LockIcon />
+            </Input>
+            <Input>
+              <input
+                id="confirmPassword"
+                type="password"
+                placeholder="Confirmar senha"
+                onChange={handleInputChange}
+              />
+              <LockIcon />
+            </Input>
+          </StepOneContainer>
+          <StepTwoContainer
+            className={step === 2 ? "active-two" : "not_active-two"}
+          >
+            <Input>
+              <input
+                id="firstName"
+                type="text"
+                placeholder="Nome"
+                onChange={handleInputChange}
+                style={{ height: "42.667px" }}
+              />
+              {/* <AccountBoxIcon /> */}
+            </Input>
+            <Input>
+              <input
+                id="lastName"
+                type="email"
+                placeholder="Sobrenome"
+                onChange={handleInputChange}
+                style={{ height: "42.667px" }}
+              />
+              {/* <EmailIcon /> */}
+            </Input>
+            <Input>
+              <input type="date" id="birthDate" onChange={handleInputChange} />
+            </Input>
+            <Select>
+              <div id="arrow-down" className="arrow-down">
+                <ArrowDropDownIcon />
+              </div>
+              <select id="sex" defaultValue="" onChange={handleInputChange}>
+                <option value="" disabled>
+                  Gênero
+                </option>
+                <option value="MAN">Masculino</option>
+                <option value="WOMAN">Feminino</option>
+              </select>
+            </Select>
+          </StepTwoContainer>
         </FormInputs>
+        {step === 1 && (
+          <FormButtons>
+            <PreviousStepButton
+              disabled
+              style={{
+                cursor: "default",
+              }}
+              type="button"
+            >
+              VOLTAR
+            </PreviousStepButton>
+            <NextStepButton type="button" onClick={nextStep}>
+              PRÓXIMO
+            </NextStepButton>
+          </FormButtons>
+        )}
+        {step === 2 && (
+          <FormButtons>
+            <PreviousStepButton
+              style={{
+                cursor: "pointer",
+              }}
+              type="button"
+              onClick={lastStep}
+            >
+              VOLTAR
+            </PreviousStepButton>
+            <ConfirmButton type="button" onClick={handleSubmit}>
+              CONFIRMAR
+            </ConfirmButton>
+          </FormButtons>
+        )}
       </Form>
     </Container>
   );

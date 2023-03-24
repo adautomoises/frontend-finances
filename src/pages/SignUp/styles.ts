@@ -9,7 +9,6 @@ export const Container = styled.main`
 `;
 
 export const Form = styled.form`
-  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -19,10 +18,6 @@ export const Form = styled.form`
   background-color: #ee82d125;
   border-radius: 1rem;
   padding: 2rem;
-  div:first-child {
-    display: flex;
-    width: 100%;
-  }
 `;
 
 export const BackButton = styled.button`
@@ -94,13 +89,18 @@ export const StepTwo = styled.div`
 `;
 
 export const FormInputs = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
 `;
+
+export const StepOneContainer = styled.div``;
+
+export const StepTwoContainer = styled.div``;
 
 export const Input = styled.div`
   width: 100%;
@@ -144,6 +144,8 @@ export const Input = styled.div`
   margin-bottom: 2rem;
 
   input[type="date"] {
+    cursor: text;
+    padding: 0 0.5rem;
     &::-webkit-calendar-picker-indicator {
       cursor: pointer;
       width: 1.5rem;
@@ -151,17 +153,38 @@ export const Input = styled.div`
       color: var(--WHITE);
       filter: invert();
     }
-    margin-right: 0.5rem;
+    margin-right: 0.3rem;
     margin-bottom: 0.5rem;
   }
 `;
 
 export const Select = styled.div`
   width: 100%;
-  select {
-    width: 100%;
-  }
   margin-bottom: 2rem;
+
+  position: relative;
+  select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
+    font-size: 15px;
+    width: 100%;
+    height: 42.667px;
+    border: none;
+    border-radius: 1rem;
+    border-bottom: 3px solid var(--WHITE);
+    padding: 0.5em;
+    color: var(--WHITE);
+    option {
+      color: var(--BLACK);
+      background-color: #ee82d150;
+    }
+  }
+  select:focus-visible {
+    outline: 0;
+  }
 `;
 
 export const FormButtons = styled.div`
